@@ -5,7 +5,7 @@ locals {
     Environment = "dev"
   }
   app = {
-    name = "node_test"
+    name = "repo_produto"
   }
 }
 module "ecr" {

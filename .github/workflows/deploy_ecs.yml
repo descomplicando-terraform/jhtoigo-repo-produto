@@ -28,7 +28,11 @@ name: Deploy to Amazon ECS
 
 on:
   push:
-    branches: [ "ci" ]
+    paths-ignore:
+      - 'docs/**'
+      - 'iac/**'
+    branches: [ "main" ]
+
 
 env:
   AWS_REGION: ${{ vars.AWS_REGION }}
