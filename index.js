@@ -9,6 +9,10 @@ const pgPool = new Pool({
   connectionString: process.env.PG_CONNECTION_STRING,
 });
 
+app.get('/', (req, res) => {
+  res.status(200).send('Hello!');
+});
+
 app.get('/pg-check', async (req, res) => {
     try {
       const client = await pgPool.connect();
