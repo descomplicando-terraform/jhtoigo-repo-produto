@@ -35,3 +35,24 @@ module "ecs_task" {
   log_group_ecs          = data.aws_ssm_parameter.ecs_log_group.value
 }
 
+module "ecs_service" {
+  source = "git@github.com:jhtoigo/terraform-aws-ecs-service.git?ref=v1.1.1"
+
+  service_name      = local.app.name
+  container_name    = local.app.name
+  container_port    = local.app.port
+  capacity_provider = "FARGATE_SPOT"
+  cluster_id        = data.aws_ssm_parameter.ecs_cluster_id.value
+  ecs_cluster_name  = data.aws_ssm_parameter.ecs_cluster_name.value
+  vpc_id            = data.aws_ssm_parameter.vpc_id.value
+  namespace         = data.aws_ssm_parameter.namespace.value
+  resource_tags     = local.tags
+
+  subnets = [
+    data.aws_ssm_parameter.private_subnets_1a.value,
+    data.aws_ssm_parameter.private_subnets_1b.value,
+    data.aws_ssm_parameter.private_subnets_1c.value
+  ]
+  ecs_task      = module.ecs_task.task_definition_arn
+  associate_alb = false
+}
