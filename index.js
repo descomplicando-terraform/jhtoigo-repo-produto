@@ -9,8 +9,18 @@ const pgPool = new Pool({
   connectionString: process.env.PG_CONNECTION_STRING,
 });
 
+// Middleware para ajustar a base path
+const basePath = process.env.BASE_PATH || '';
+
+app.use((req, res, next) => {
+  if (req.originalUrl.startsWith(basePath)) {
+    req.url = req.originalUrl.substring(basePath.length);
+  }
+  next();
+});
+
 app.get('/', (req, res) => {
-  res.status(200).send('Hello!');
+  res.status(200).send('Hello');
 });
 
 app.get('/pg-check', async (req, res) => {
@@ -38,4 +48,4 @@ app.get('/pg-check', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
-})
+});
