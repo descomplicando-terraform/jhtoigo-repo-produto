@@ -10,7 +10,8 @@ locals {
     cpu    = 256
     memory = 512
     environments = {
-      PORT = 3000
+      PORT      = 3000
+      BASE_PATH = "/test/"
     }
 
   }
@@ -53,6 +54,10 @@ module "ecs_service" {
     data.aws_ssm_parameter.private_subnets_1b.value,
     data.aws_ssm_parameter.private_subnets_1c.value
   ]
-  ecs_task      = module.ecs_task.task_definition_arn
-  associate_alb = false
+  ecs_task                        = module.ecs_task.task_definition_arn
+  associate_alb                   = false
+  load_balancer_arn               = data.aws_ssm_parameter.load_balancer_arn.value
+  load_balancer_listener_arn      = data.aws_ssm_parameter.load_balancer_listener_arn.value
+  load_balancer_listner_rule_path = ["/test"]
+
 }

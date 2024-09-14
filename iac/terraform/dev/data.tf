@@ -34,3 +34,14 @@ data "aws_ssm_parameter" "private_subnets_1c" {
 data "aws_ssm_parameter" "namespace" {
   name = "/linuxtips-tf-final/namespace"
 }
+
+
+## Load Balancer
+data "aws_ssm_parameter" "load_balancer_arn" {
+  name = "/linuxtips-tf-final/lb/arn"
+}
+
+data "aws_ssm_parameter" "load_balancer_listener_arn" {
+  name = "/linuxtips-tf-final/lb/default_listener"
+}
+
