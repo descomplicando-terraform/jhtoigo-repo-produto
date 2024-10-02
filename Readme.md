@@ -1,15 +1,32 @@
 # Projeto Final Terraform intensivo repo de produto
 
-Aplicação desenvolvida em node.js apenas para demonstração de caso de uso de um repo de produto.
+Repositório que simula uma aplicação web.
 
-Neste repo de produto, temos os módulos terraform responsaveis por:
+### Módulo de ECS
 
-* ECR - Elastic Container Registry - Armazenar a imagem da aplicação
-* ECS Service - criar o service do ecs
-* ECS Task - criar a task do service
+Criado um [Módulo ECS](https://github.com/jhtoigo/terraform-aws-service.git) responsavel por criar:
 
-![](docs/stack.png)
+* Task
+* Service
+* Security groups
+* IAM
+* Auto Scaling
+* Target Group
+* Listener Rule
 
+### Pipeline:
+
+* Cria imagem docker da aplicação e fazer o push para o repositório ECR.
+* Efetuar testes do Terraform: 
+    * Lint
+    * fmt
+    + validate
+* Efetuar deploy do service em cluster ECS criado no repo de groundwork.
+
+
+![](docs/readme.png)
+
+### Build da aplicação utilizando docker
 
 Build do node.js
 
