@@ -1,5 +1,5 @@
 module "ecs_service" {
-  source       = "git@github.com:jhtoigo/terraform-aws-service.git?ref=v1.1.0"
+  source       = "git::https://github.com/jhtoigo/terraform-aws-service.git?ref=v1.1.0"
   name         = "produto"
   project_name = "linuxtips-tf-final"
   environment  = "dev"
