@@ -17,20 +17,18 @@ data "aws_ssm_parameter" "vpc_id" {
   name = "/linuxtips-tf-final/vpc/vpc_id"
 }
 
-data "aws_ssm_parameter" "private_subnets_1a" {
-  name = "/linuxtips-tf-final/vpc/subnet-private-us-east-1a"
-}
-
-data "aws_ssm_parameter" "private_subnets_1b" {
-  name = "/linuxtips-tf-final/vpc/subnet-private-us-east-1b"
-}
-
-data "aws_ssm_parameter" "private_subnets_1c" {
-  name = "/linuxtips-tf-final/vpc/subnet-private-us-east-1c"
-}
-
 ## Service Discovery
 
 data "aws_ssm_parameter" "namespace" {
   name = "/linuxtips-tf-final/namespace"
 }
+
+## Load Balancer
+data "aws_ssm_parameter" "load_balancer_arn" {
+  name = "/linuxtips-tf-final/lb/arn"
+}
+
+data "aws_ssm_parameter" "load_balancer_listener_arn" {
+  name = "/linuxtips-tf-final/lb/default_listener"
+}
+
