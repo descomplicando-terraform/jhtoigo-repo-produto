@@ -4,11 +4,14 @@ locals {
   environment  = "dev"
   region       = "us-east-1"
   container_environments = {
-    PORT     = "3000"
-    NODE_ENV = "dev"
+    PORT      = "3000"
+    NODE_ENV  = "dev"
+    BASE_PATH = "/produto"
+
   }
   container_secrets = {
-    DATABASE_URL = "example"
+    PG_CONNECTION_STRING = "postgresql://postgres:senha123@postgres:5432/postgres"
+
   }
   tags = {
     Environment = "dev"
@@ -16,7 +19,7 @@ locals {
 }
 
 module "ecs_service" {
-  source                 = "git::https://github.com/jhtoigo/terraform-aws-service.git?ref=v1.1.1"
+  source                 = "git::https://github.com/jhtoigo/terraform-aws-service.git?ref=v1.1.2"
   name                   = local.app_name
   project_name           = local.project_name
   environment            = local.environment
