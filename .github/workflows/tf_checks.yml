@@ -48,7 +48,7 @@ jobs:
     defaults:
       run:
         working-directory: 'iac/terraform/dev'
-     steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
