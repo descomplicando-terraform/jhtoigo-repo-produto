@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+
 jobs:
   terraform-lint:
     name: Terraform Lint
@@ -45,7 +48,6 @@ jobs:
   terraform-validate:
     name: Terraform Validation
     runs-on: ubuntu-latest
-    environment: dev
     defaults:
       run:
         working-directory: 'iac/terraform/dev'
